@@ -8,4 +8,5 @@ fn main() {
     a.insert(5);
     a.remove(4);
     println!("{:?}", a.contains(&4));
+    println!("{:?}", a);
 }

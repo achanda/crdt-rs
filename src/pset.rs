@@ -21,10 +21,10 @@ impl<T: Ord> PSet<T> {
     }
 
     pub fn remove(&mut self, value: T) -> bool {
-        //if self.add_set.contains(value) {
-            self.remove_set.insert(value)
-        //}
-        //return false
+        if self.add_set.contains(&value) {
+            self.remove_set.insert(value);
+        }
+        return false
     }
 
     pub fn contains(&mut self, value: &T) -> bool {
