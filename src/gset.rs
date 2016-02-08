@@ -40,6 +40,11 @@ impl<T: Ord + Clone> GSet<T> {
         let intersection: BTreeSet<_> = self.set.intersection(&other.set).cloned().collect();
         GSet { set: intersection }
     }
+
+    pub fn union(&mut self, other: &GSet<T>) -> GSet<T> {
+    let union: BTreeSet<_> = self.set.union(&other.set).cloned().collect();
+    GSet { set: union }
+    }
 }
 
 impl<T: Ord + Clone> FromIterator<T> for GSet<T> {

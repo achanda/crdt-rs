@@ -16,5 +16,9 @@ fn main() {
 
     // Difference example
     let difference: GSet<i32> = a.difference(&b).into_iter().collect();
-    println!("Intersection: {:?}", difference);
+    println!("Difference: {:?}", difference);
+
+    // Union example
+    let union: GSet<i32> = a.union(&b).into_iter().collect();
+    println!("Union: {:?}", union);
 }
