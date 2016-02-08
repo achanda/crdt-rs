@@ -6,7 +6,11 @@ pub struct GSet<T> {
     set: BTreeSet<T>,
 }
 
-impl<T: Ord> GSet<T> {
+pub struct IntoIter<T> {
+    iter: <BTreeSet<T> as IntoIterator>::IntoIter,
+}
+
+impl<T: Ord + Clone> GSet<T> {
     pub fn new() -> GSet<T> {
         GSet { set: BTreeSet::new() }
     }
@@ -18,9 +22,14 @@ impl<T: Ord> GSet<T> {
     pub fn contains(&mut self, value: &T) -> bool {
         self.set.contains(&value)
     }
+
+    pub fn intersection(&mut self, other: &GSet<T>) -> GSet<T> {
+        let intersection: BTreeSet<_> = self.set.intersection(&other.set).cloned().collect();
+        GSet { set: intersection }
+    }
 }
 
-impl<T: Ord> FromIterator<T> for GSet<T> {
+impl<T: Ord + Clone> FromIterator<T> for GSet<T> {
     fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> GSet<T> {
         let mut set = GSet::new();
         set.extend(iter);
@@ -28,11 +37,32 @@ impl<T: Ord> FromIterator<T> for GSet<T> {
     }
 }
 
-impl<T: Ord> Extend<T> for GSet<T> {
+impl<T: Ord + Clone> Extend<T> for GSet<T> {
     #[inline]
     fn extend<Iter: IntoIterator<Item = T>>(&mut self, iter: Iter) {
         for elem in iter {
         self.insert(elem);
         }
+    }
+}
+
+impl<T> IntoIterator for GSet<T> {
+    type Item = T;
+    type IntoIter = IntoIter<T>;
+
+    fn into_iter(self) -> IntoIter<T> {
+        IntoIter { iter: self.set.into_iter() }
+    }
+}
+
+impl<T> Iterator for IntoIter<T> {
+    type Item = T;
+
+    fn next(&mut self) -> Option<T> {
+        self.iter.next()
+    }
+    
+    fn size_hint(&self) -> (usize, Option<usize>) {
+        self.iter.size_hint()
     }
 }

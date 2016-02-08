@@ -8,7 +8,7 @@ pub struct PSet<T> {
     remove_set: GSet<T>,
 }
 
-impl<T: Ord> PSet<T> {
+impl<T: Ord + Clone> PSet<T> {
     pub fn new() -> PSet<T> {
         PSet {
             add_set:    GSet::new(),
@@ -32,7 +32,7 @@ impl<T: Ord> PSet<T> {
     }
 }
 
-impl<T: Ord> FromIterator<T> for PSet<T> {
+impl<T: Ord + Clone> FromIterator<T> for PSet<T> {
     fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> PSet<T> {
         let mut set = PSet::new();
         set.extend(iter);
@@ -40,7 +40,7 @@ impl<T: Ord> FromIterator<T> for PSet<T> {
     }
 }
 
-impl<T: Ord> Extend<T> for PSet<T> {
+impl<T: Ord + Clone> Extend<T> for PSet<T> {
     #[inline]
     fn extend<Iter: IntoIterator<Item = T>>(&mut self, iter: Iter) {
         for elem in iter {
