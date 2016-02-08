@@ -1,5 +1,5 @@
 [package]
-name = "crdt"
+name = "crdt_rs"
 version = "0.1.0"
 authors = ["Abhishek Chanda <abhishek.becs@gmail.com>"]
 description = "A library to work with Conflict-free replicated data types (CRDT) in Rust"
