@@ -31,6 +31,11 @@ impl<T: Ord + Clone> GSet<T> {
         self.len() == 0
     }
 
+    pub fn difference(&mut self, other: &GSet<T>) -> GSet<T> {
+        let difference: BTreeSet<_> = self.set.difference(&other.set).cloned().collect();
+        GSet { set: difference }
+    }
+
     pub fn intersection(&mut self, other: &GSet<T>) -> GSet<T> {
         let intersection: BTreeSet<_> = self.set.intersection(&other.set).cloned().collect();
         GSet { set: intersection }
