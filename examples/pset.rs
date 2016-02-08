@@ -1,4 +1,4 @@
-extern crate crdt;
+extern crate crdt_rs as crdt;
 
 use crdt::PSet;
 

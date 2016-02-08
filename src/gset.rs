@@ -42,8 +42,8 @@ impl<T: Ord + Clone> GSet<T> {
     }
 
     pub fn union(&mut self, other: &GSet<T>) -> GSet<T> {
-    let union: BTreeSet<_> = self.set.union(&other.set).cloned().collect();
-    GSet { set: union }
+        let union: BTreeSet<_> = self.set.union(&other.set).cloned().collect();
+        GSet { set: union }
     }
 }
 
