@@ -35,6 +35,14 @@ impl<T: Ord + Clone> PSet<T> {
         self.add_set.difference(&self.remove_set).into_iter().collect()
     }
 
+    pub fn is_empty(&mut self) -> bool {
+        self.contents().is_empty()
+    }
+
+    pub fn len(&mut self) -> usize {
+        self.contents().len()
+    }
+
     pub fn union(&mut self, other: &PSet<T>) -> PSet<T> {
         PSet { 
             add_set:    self.add_set.union(&other.add_set),
