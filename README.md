@@ -1,6 +1,6 @@
 crdt-rs
 ============
-This is a library to work with Context Free Replicated Data Types (CRDT)[1] in rust
+This is a library to work with [Context Free Replicated Data Types] (https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type) in rust
 
 Installation
 =============
@@ -23,5 +23,3 @@ TODO
 2. Documentation
 3. More utility functions for all types
 4. More types
-
-[1]: https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type
