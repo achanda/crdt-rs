@@ -30,6 +30,13 @@ impl<T: Ord + Clone> PSet<T> {
     pub fn contains(&mut self, value: &T) -> bool {
         self.add_set.contains(&value) & !self.remove_set.contains(&value)
     }
+
+    pub fn union(&mut self, other: &PSet<T>) -> PSet<T> {
+        PSet { 
+            add_set:    self.add_set.union(&other.add_set),
+            remove_set: self.remove_set.union(&other.remove_set)
+        }
+    }
 }
 
 impl<T: Ord + Clone> FromIterator<T> for PSet<T> {
