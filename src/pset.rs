@@ -31,6 +31,10 @@ impl<T: Ord + Clone> PSet<T> {
         self.add_set.contains(&value) & !self.remove_set.contains(&value)
     }
 
+    pub fn contents(&mut self) -> Vec<T> {
+        self.add_set.difference(&self.remove_set).into_iter().collect()
+    }
+
     pub fn union(&mut self, other: &PSet<T>) -> PSet<T> {
         PSet { 
             add_set:    self.add_set.union(&other.add_set),
