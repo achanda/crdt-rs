@@ -23,6 +23,14 @@ impl<T: Ord + Clone> GSet<T> {
         self.set.contains(&value)
     }
 
+    pub fn len(&self) -> usize {
+        self.set.len()
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.len() == 0
+    }
+
     pub fn intersection(&mut self, other: &GSet<T>) -> GSet<T> {
         let intersection: BTreeSet<_> = self.set.intersection(&other.set).cloned().collect();
         GSet { set: intersection }
