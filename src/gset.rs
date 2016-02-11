@@ -100,3 +100,18 @@ impl<T> Iterator for IntoIter<T> {
         self.iter.size_hint()
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    
+    #[test]
+    fn test_gset_insert() {
+        let mut a: GSet<i32> = GSet::new();
+        a.insert(1);
+        a.insert(2);
+
+        let elements = a.into_iter().collect::<Vec<_>>();
+        assert_eq!(elements, [1,2]);
+    }
+}
