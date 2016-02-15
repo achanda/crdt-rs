@@ -76,6 +76,13 @@ impl<T: Ord + Clone> PSet<T> {
             remove_set: self.remove_set.union(&other.remove_set)
         }
     }
+
+    /// Returns the set difference between the given `PSet` and
+    /// another `PSet` as a `PSet`
+    pub fn difference(&mut self, other: &PSet<T>) -> PSet<T> {
+        add_set:    self.add_set.difference(&other.add_set),
+        remove_set: GSet::new()
+    }
 }
 
 impl<T: Ord + Clone> FromIterator<T> for PSet<T> {
