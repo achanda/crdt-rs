@@ -80,8 +80,10 @@ impl<T: Ord + Clone> PSet<T> {
     /// Returns the set difference between the given `PSet` and
     /// another `PSet` as a `PSet`
     pub fn difference(&mut self, other: &PSet<T>) -> PSet<T> {
-        add_set:    self.add_set.difference(&other.add_set),
-        remove_set: GSet::new()
+        PSet {
+            add_set:    self.add_set.difference(&other.add_set),
+            remove_set: GSet::new()
+        }
     }
 }
 
