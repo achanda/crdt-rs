@@ -62,8 +62,17 @@ impl<T: Ord + Clone> PSet<T> {
     /// Returns the set union between the given `PSet` and
     /// another `PSet` as a `PSet`
     pub fn union(&mut self, other: &PSet<T>) -> PSet<T> {
-        PSet { 
+        PSet {
             add_set:    self.add_set.union(&other.add_set),
+            remove_set: self.remove_set.union(&other.remove_set)
+        }
+    }
+
+    /// Returns the set intersection between the given `PSet` and
+    /// another `PSet` as a `PSet`
+    pub fn intersection(&mut self, other: &PSet<T>) -> PSet<T> {
+        PSet {
+            add_set:    self.add_set.intersection(&other.add_set),
             remove_set: self.remove_set.union(&other.remove_set)
         }
     }

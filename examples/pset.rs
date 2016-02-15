@@ -13,4 +13,16 @@ fn main() {
 
     // Example of contents
     println!("Set A contains: {:?}", a.contents());
+
+    // Example of union
+    let mut b = PSet::new();
+    b.insert(5);
+    b.insert(6);
+    b.insert(7);
+    b.remove(7);
+    println!("Set B contains: {:?}", b.contents());
+    println!("Union: {:?}", a.union(&b).contents());
+
+    // Example of intersection
+    println!("Intersection: {:?}", a.intersection(&b).contents());
 }
