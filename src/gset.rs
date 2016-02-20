@@ -3,7 +3,7 @@ use std::iter::{FromIterator, Extend};
 
 /// A `GSet` is an implementation of a grow-only set.
 /// The underlying data-structure is a `BTreeSet`
-#[derive(Clone, Hash, Debug)]
+#[derive(Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct GSet<T> {
     set: BTreeSet<T>,
 }

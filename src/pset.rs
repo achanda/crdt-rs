@@ -4,7 +4,7 @@ use gset::GSet;
 
 /// Implements a state based two-phase set
 /// using two `GSet`s
-#[derive(Clone, Hash, Debug)]
+#[derive(Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct PSet<T> {
     add_set:    GSet<T>,
     remove_set: GSet<T>,
